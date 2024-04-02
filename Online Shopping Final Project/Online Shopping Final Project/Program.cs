@@ -1,9 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Online_Shopping_Final_Project.Client.Pages;
 using Online_Shopping_Final_Project.Components;
+using Online_Shopping_Final_Project.Data;
+using Online_Shopping_Final_Project.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ShoppingContext>(optionsBuilder =>
+{
+    optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("ShoppingDB"));
+});
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
