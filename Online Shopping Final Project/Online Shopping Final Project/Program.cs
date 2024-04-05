@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.FluentUI.AspNetCore.Components;
-using Online_Shopping_Final_Project.Client.Pages;
-using Online_Shopping_Final_Project.Components;
-using Online_Shopping_Final_Project.Data;
-using Online_Shopping_Final_Project.Entities;
+using Online_Shopping.Client.Pages;
+using Online_Shopping.Components;
+using Online_Shopping.Data;
+using Online_Shopping.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
