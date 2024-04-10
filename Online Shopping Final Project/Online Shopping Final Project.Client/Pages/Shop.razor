@@ -1,0 +1,101 @@
+﻿@page "/Shop"
+
+@rendermode InteractiveWebAssembly
+
+<style>
+
+    
+
+</style>
+
+@* Logan Kaas - 4/10/2024 *@
+<FluentCard Height="100px" Width="1050px">
+    <FluentStack Orientation="Orientation.Horizontal" Id="shopNavId" Width="100%">
+        <FluentButton OnClick="ToggleTShirts">T-Shirts</FluentButton>
+        <FluentDivider></FluentDivider>
+        <FluentButton OnClick="ToggleShorts">Shorts</FluentButton>
+        <FluentDivider></FluentDivider>
+        <FluentButton OnClick="TogglePants">Pants</FluentButton>
+        <FluentDivider></FluentDivider>
+        <FluentButton OnClick="ToggleHoodies">Hoodies</FluentButton>
+        <FluentDivider></FluentDivider>
+        <FluentButton OnClick="ToggleShoes">Shoes</FluentButton>
+    </FluentStack>
+</FluentCard>
+<FluentCard>
+    <Tshirts @ref="tShirts" Title="@titleT">
+
+    </Tshirts>
+    <FluentDivider />
+    <Shorts @ref="shorts" Title="@titleS">
+
+    </Shorts>
+    <FluentDivider />
+    <Pants @ref="pants" Title="@titleP">
+
+    </Pants>
+    <FluentDivider />
+    <Hoodies @ref="hoodies" Title="@titleH">
+
+    </Hoodies>
+    <FluentDivider />
+    <Shoes @ref="shoes" Title="@titleSh">
+
+    </Shoes>
+</FluentCard>
+
+@code {
+
+    // Titles - Logan Kaas
+    public string titleT = "T-Shirts";
+
+    public string titleS = "Shorts";
+
+    public string titleP = "Pants";
+
+    public string titleH = "Hoodies";
+
+    public string titleSh = "Shoes";
+
+
+
+    // Child Components - Logan Kaas
+    private Tshirts tShirts;
+    private Hoodies hoodies;
+    private Pants pants;
+    private Shorts shorts;
+    private Shoes shoes;
+
+
+
+    // Toggling Shopping Sections - Logan Kaas
+    public void ToggleTShirts()
+    {
+        tShirts.ToggleContent();
+        StateHasChanged();
+    }
+
+    public void ToggleShorts()
+    {
+        shorts.ToggleContent();
+        StateHasChanged();
+    }
+
+    public void TogglePants()
+    {
+        pants.ToggleContent();
+        StateHasChanged();
+    }
+
+    public void ToggleHoodies()
+    {
+        hoodies.ToggleContent();
+        StateHasChanged();
+    }
+
+    public void ToggleShoes()
+    {
+        shoes.ToggleContent();
+        StateHasChanged();
+    }
+}

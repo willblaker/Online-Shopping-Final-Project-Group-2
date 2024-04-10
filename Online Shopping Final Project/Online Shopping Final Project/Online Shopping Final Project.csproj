@@ -17,6 +17,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="3.6.0" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI.Emojis" Version="3.6.0" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI.Icons" Version="3.6.0" />
   </ItemGroup>
   <ItemGroup>
 	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* " />

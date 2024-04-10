@@ -1,7 +1,8 @@
 ﻿@inherits LayoutComponentBase
+
 <FluentLayout>
     <FluentHeader>
-        Online Shopping Final Project
+        Shopping Web - Final Project
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <NavMenu />
@@ -12,12 +13,7 @@
         </FluentBodyContent>
     </FluentStack>
     <FluentFooter>
-        <div class="link1">
-            <a href="https://www.fluentui-blazor.net" target="_blank">Documentation and demos</a>
-        </div>
-        <div class="link2">
-            <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor" target="_blank">About Blazor</a>
-        </div>
+        © 2024 ShopWeb FP - University of Cincinnati - USA, All rights reserved.
     </FluentFooter>
 </FluentLayout>
 
@@ -26,3 +22,39 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+
+
+@* @inherits LayoutComponentBase
+
+<style>
+
+</style>
+
+<FluentLayout>
+    <FluentHeader>
+        <FluentDivider></FluentDivider>
+        <div class="navigation-custom">
+            <NavMenu />
+        </div>
+    </FluentHeader>
+    <FluentDivider></FluentDivider>
+    <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
+        <FluentBodyContent>
+            <div>
+                @Body
+            </div>
+        </FluentBodyContent>
+    </FluentStack>
+    <FluentFooter>
+        <div class="footer">
+            © 2024 WebServerDevelopment - University of Cincinnati - USA, All rights reserved.
+        </div>
+    </FluentFooter>
+</FluentLayout>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div> *@
