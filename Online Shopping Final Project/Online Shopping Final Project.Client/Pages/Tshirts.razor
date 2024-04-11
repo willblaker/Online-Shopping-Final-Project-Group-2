@@ -24,28 +24,75 @@
 
 </style>
 
-<FluentCard>
-    @if (tShirtsVisible)
-    {
-        <div>@tShirts</div>
-        <br />
-        <div class="row">
-            <div class="column left">
-                <FluentCard>
-                    <h2>TShirt Column 1</h2>
-                    <p>Some text..</p>
-                </FluentCard>
-            </div>
-            <div class="column right">
-                <FluentCard>
-                    <h2>TShirt Column 2</h2>
-                    <p>Some text..</p>
-                </FluentCard>
-            </div>
+@if (tShirtsVisible)
+{
+    <div>@tShirts</div>
+    <br />
+    <h3 style="font-weight:bolder;font-size:24px;color:#000000;font-family:'Comic Sans MS';">T-Shirts</h3>
+    <br />
+    <hr />
+    <div class="row">
+        <div class="column left">
+            <FluentCard>
+                <img src="./img/tshirt1.png" width="390" height="630" />
+                <br />
+                <p>Mens - Black T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
         </div>
-    }
-</FluentCard>
-<FluentSpacer />
+        <div class="column right">
+            <FluentCard>
+                <img src="./img/tshirt2.png" width="390" height="630" />
+                <br />
+                <p>Mens - Green T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="column left">
+            <FluentCard>
+                <img src="./img/tshirt3.png" width="390" height="630" />
+                <br />
+                <p>Mens - Pink T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+        <div class="column right">
+            <FluentCard>
+                <img src="./img/tshirt4.png" width="390" height="630" />
+                <br />
+                <p>Mens - Biege T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+    </div>
+}
 
 @code {
 
