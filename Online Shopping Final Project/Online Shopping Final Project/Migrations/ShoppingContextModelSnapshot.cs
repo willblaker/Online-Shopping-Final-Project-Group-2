@@ -46,6 +46,64 @@ namespace OnlineShoppingFinalProject.Migrations
                     b.HasKey("ItemId");
 
                     b.ToTable("Items");
+
+                    b.HasData(
+                        new
+                        {
+                            ItemId = 1,
+                            ItemDescription = "Black cotton crew neck T-shirt for Men",
+                            ItemName = "Mens - Black T-shirt",
+                            ItemPrice = 15.5f
+                        },
+                        new
+                        {
+                            ItemId = 2,
+                            ItemDescription = "Green cotton crew neck T-shirt for Men",
+                            ItemName = "Mens - Green T-shirt",
+                            ItemPrice = 15.25f
+                        },
+                        new
+                        {
+                            ItemId = 3,
+                            ItemDescription = "Pink cotton crew neck T-shirt for Men",
+                            ItemName = "Mens - Pink T-shirt",
+                            ItemPrice = 14.5f
+                        },
+                        new
+                        {
+                            ItemId = 4,
+                            ItemDescription = "Biege cotton crew neck T-shirt for Men",
+                            ItemName = "Mens - Biege T-shirt",
+                            ItemPrice = 13f
+                        },
+                        new
+                        {
+                            ItemId = 5,
+                            ItemDescription = "Light Blue Denim Jeans for Men",
+                            ItemName = "Mens - Light Blue Jeans",
+                            ItemPrice = 22.25f
+                        },
+                        new
+                        {
+                            ItemId = 6,
+                            ItemDescription = "Black Denim Jeans for Men",
+                            ItemName = "Mens - Black Jeans",
+                            ItemPrice = 25.5f
+                        },
+                        new
+                        {
+                            ItemId = 7,
+                            ItemDescription = "Grey Denim Jeans for Men",
+                            ItemName = "Mens - Grey Jeans",
+                            ItemPrice = 27.25f
+                        },
+                        new
+                        {
+                            ItemId = 8,
+                            ItemDescription = "Grey Denim Jeans for Men",
+                            ItemName = "Mens - Blue Jeans",
+                            ItemPrice = 30f
+                        });
                 });
 
             modelBuilder.Entity("Online_Shopping_Final_Project.Entities.Order", b =>
