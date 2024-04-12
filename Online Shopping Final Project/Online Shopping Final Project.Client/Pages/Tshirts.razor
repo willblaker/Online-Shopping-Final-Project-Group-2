@@ -1,0 +1,116 @@
+﻿@page "/Tshirts"
+
+<style>
+
+    .tshirts {
+        width: 250px;
+        height: 250px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+</style>
+
+@if (tShirtsVisible)
+{
+    <div>@tShirts</div>
+    <br />
+    <h3 style="font-weight:bolder;font-size:24px;color:#000000;font-family:'Comic Sans MS';">T-Shirts</h3>
+    <br />
+    <hr />
+    <div class="row">
+        <div class="column left">
+            <FluentCard>
+                <img src="./img/tshirt1.png" width="390" height="630" />
+                <br />
+                <p>Mens - Black T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+        <div class="column right">
+            <FluentCard>
+                <img src="./img/tshirt2.png" width="390" height="630" />
+                <br />
+                <p>Mens - Green T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="column left">
+            <FluentCard>
+                <img src="./img/tshirt3.png" width="390" height="630" />
+                <br />
+                <p>Mens - Pink T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+        <div class="column right">
+            <FluentCard>
+                <img src="./img/tshirt4.png" width="390" height="630" />
+                <br />
+                <p>Mens - Biege T-shirt</p>
+                <br />
+                <FluentButton Appearance="Appearance.Stealth">Small</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Medium</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
+                <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
+                <br />
+                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+            </FluentCard>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "T-Shirts";
+
+    [Parameter]
+    public EventCallback<string> Clicked { get; set; }
+
+    [Parameter]
+    public RenderFragment tShirts { get; set; } = default!;
+
+    private bool tShirtsVisible = true;
+
+    public void ToggleContent()
+    {
+        tShirtsVisible = !tShirtsVisible;
+        StateHasChanged();
+    }
+
+}

@@ -7,10 +7,13 @@ namespace Online_Shopping_Final_Project.Entities
     public class Item
     {
         public int ItemId { get; set; }
+
         [MaxLength(50)]
         public string ItemName { get; set; }
+
         [MaxLength(50)]
         public string ItemDescription { get; set; }
+
         public float ItemPrice { get; set; }
     }
 }
