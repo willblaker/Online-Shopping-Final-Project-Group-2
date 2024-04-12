@@ -1,6 +1,14 @@
 ﻿@page "/Cart"
 
-
+<FluentCard Height="1000px" Width="600px">
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentStack Orientation="Orientation.Horizontal">
+            <FluentIcon Value="@(new Icons.Regular.Size24.Cart())" />
+            <FluentLabel Style="font-weight:bold">Shopping Cart</FluentLabel>
+        </FluentStack>
+        <FluentButton Appearance="Appearance.Accent">Checkout</FluentButton>
+    </FluentStack>
+</FluentCard>
 
 @code {
 
