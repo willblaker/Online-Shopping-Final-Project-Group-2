@@ -1,4 +1,5 @@
 ﻿@page "/Pants"
+@inject HttpClient http
 
 <style>
 
@@ -43,7 +44,8 @@
                 <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
                 <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
                 <br />
-                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+                <FluentButton OnClick="(() => AddToCart(5))" Appearance="Appearance.Accent">Add to Cart</FluentButton>
+               
             </FluentCard>
         </div>
         <div class="column right">
@@ -57,7 +59,7 @@
                 <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
                 <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
                 <br />
-                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+                <FluentButton OnClick="(() => AddToCart(6))" Appearance="Appearance.Accent">Add to Cart</FluentButton>
             </FluentCard>
         </div>
     </div>
@@ -74,7 +76,7 @@
                 <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
                 <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
                 <br />
-                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+                <FluentButton OnClick="(() => AddToCart(7))" Appearance="Appearance.Accent">Add to Cart</FluentButton>
             </FluentCard>
         </div>
         <div class="column right">
@@ -88,7 +90,7 @@
                 <FluentButton Appearance="Appearance.Stealth">Large</FluentButton>
                 <FluentButton Appearance="Appearance.Stealth">X-Large</FluentButton>
                 <br />
-                <FluentButton Appearance="Appearance.Accent">Add to Cart</FluentButton>
+                <FluentButton OnClick="(() => AddToCart(8))" Appearance="Appearance.Accent">Add to Cart</FluentButton>
             </FluentCard>
         </div>
     </div>
@@ -112,6 +114,11 @@
     {
         pantsVisible = !pantsVisible;
         StateHasChanged();
+    }
+
+    public async void AddToCart(int itemId)
+    {
+        await http.PutAsync($"/api/CartEntry/{itemId}", null);
     }
 
 }
