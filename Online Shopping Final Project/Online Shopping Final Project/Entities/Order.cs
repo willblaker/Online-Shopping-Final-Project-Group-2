@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Online_Shopping_Final_Project.Entities
+namespace OnlineShopping.Entities
 {
     [Table("OrderHistory")]
     public class Order

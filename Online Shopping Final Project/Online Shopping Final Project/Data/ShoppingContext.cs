@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Online_Shopping_Final_Project.Client.Pages;
-using Online_Shopping_Final_Project.Entities;
+using OnlineShopping.Client.Pages;
+using OnlineShopping.Entities;
 
-namespace Online_Shopping_Final_Project.Data
+namespace OnlineShopping.Data
 {
     public class ShoppingContext:DbContext
     {
