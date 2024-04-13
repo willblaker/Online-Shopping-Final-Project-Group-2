@@ -23,5 +23,7 @@ namespace Online_Shopping_Final_Project.Data
         //public DbSet<M_Shoes> shoes { get; set; }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<User> Users { get; set; }
+
     }
 }
