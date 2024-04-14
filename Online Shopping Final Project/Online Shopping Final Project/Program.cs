@@ -78,4 +78,32 @@ app.MapGet("/api/CartEntry/", async (ShoppingContext dbContext) =>
     return Results.Json(viewModels);
 });
 
+app.MapGet("/api/CartEntry/{id}", async (ShoppingContext dbContext, int id) =>
+{
+    var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
+
+    if (cartEntries == null)
+    {
+        return Results.NotFound();
+    }
+
+    var viewModels = cartEntries.Select(entry => new CartEntryViewModel() { CartEntryId = entry.CartEntryId, ItemName = entry.Item.ItemName, ItemPrice = entry.Item.ItemPrice, Quantity = entry.Quantity }).ToList();
+
+    return Results.Json(viewModels);
+
+});
+
+app.MapDelete("/api/CartEntry/{Id}", async (ShoppingContext dbContext, int id) =>
+{
+    var cartEntries = await dbContext.CartEntries.FindAsync(id);
+    if (cartEntries == null)
+    {
+        return Results.NotFound();
+    }
+
+    dbContext.CartEntries.Remove(cartEntries);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok();
+});
+
 app.Run();

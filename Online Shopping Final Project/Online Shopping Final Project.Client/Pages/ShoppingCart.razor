@@ -1,6 +1,7 @@
 ﻿@page "/Cart"
 @using OnlineShoppingViewModels
 @inject HttpClient http
+@inject NavigationManager Navigation
 
 
 <FluentCard Height="1000px" Width="800px">
@@ -14,7 +15,11 @@
             <PropertyColumn Title="Item Name" Property="@(cartEntry => cartEntry.ItemName)" Sortable="true" />
             <PropertyColumn Title="Item Price" Property="@(cartEntry => cartEntry.ItemPrice.ToString("c"))" Sortable="true" />
             <PropertyColumn Property="@(cartEntry => cartEntry.Quantity)" Sortable="true" />
-            <PropertyColumn Title="Item Total" Property="@(cartEntry => cartEntry.TotalPrice.ToString("c"))" Sortable="true" />
+            <PropertyColumn Title="Item Total" Property="@(cartEntry => cartEntry.TotalPrice.ToString("c"))" Sortable="true" />                
+                <TemplateColumn>
+                <FluentButton OnClick="@(() => Navigation.NavigateTo($"/EditCart/{context.CartEntryId}"))">Edit</FluentButton>
+                    <FluentButton OnClick="@(() => DeleteCartItem(context.CartEntryId))">Delete</FluentButton>
+                </TemplateColumn>
         </FluentDataGrid>
         <h3>Total Price: @OrderTotal.ToString("c")</h3>
 
@@ -36,6 +41,12 @@
         {
             OrderTotal += cartEntry.TotalPrice;
         }
+    }
+
+    private async Task DeleteCartItem(int CartEntryID)
+    {
+        await http.DeleteAsync($"/api/CartEntry/{CartEntryID}");
+        Cart = (await http.GetFromJsonAsync<List<CartEntryViewModel>>("/api/CartEntry/")).AsQueryable();
     }
 
     

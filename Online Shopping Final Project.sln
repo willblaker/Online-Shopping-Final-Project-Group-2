@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Online Shopping Final Proje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Online Shopping Final Project.Client", "Online Shopping Final Project\Online Shopping Final Project.Client\Online Shopping Final Project.Client.csproj", "{2FEE235D-586B-4D55-8493-19F7905F9D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShoppingViewModels", "OnlineShoppingViewModels\OnlineShoppingViewModels.csproj", "{AE46AC07-7207-41B9-B761-872DA32406BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineShoppingViewModels", "OnlineShoppingViewModels\OnlineShoppingViewModels.csproj", "{AE46AC07-7207-41B9-B761-872DA32406BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
