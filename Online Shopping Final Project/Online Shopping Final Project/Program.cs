@@ -45,7 +45,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Counter).Assembly);
 
-app.MapPut("/api/CartEntry/{id}", async ([FromRoute]int id, ShoppingContext dbContext) =>
+app.MapPost("/api/CartEntry/{id}", async ([FromRoute]int id, ShoppingContext dbContext) =>
 {
     var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
     bool alreadyInCart = false;
@@ -70,6 +70,17 @@ app.MapPut("/api/CartEntry/{id}", async ([FromRoute]int id, ShoppingContext dbCo
     dbContext.SaveChanges();
 });
 
+app.MapPut("/api/CartEntry/{id}", async ([FromRoute] int id, ShoppingContext dbContext, [FromBody] CartEntryViewModel cartEntryViewModel) =>
+{
+    var cartEntry = await dbContext.CartEntries.FindAsync(id);
+    
+    cartEntry.Quantity = cartEntryViewModel.Quantity;
+
+    await dbContext.SaveChangesAsync();
+    return Results.Ok(cartEntry);
+
+});
+
 app.MapGet("/api/CartEntry/", async (ShoppingContext dbContext) =>
 {
     var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
@@ -80,16 +91,16 @@ app.MapGet("/api/CartEntry/", async (ShoppingContext dbContext) =>
 
 app.MapGet("/api/CartEntry/{id}", async (ShoppingContext dbContext, int id) =>
 {
-    var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
+    var cartEntry = await dbContext.CartEntries.Include(entry => entry.Item).FirstOrDefaultAsync(entry => entry.CartEntryId == id);
 
-    if (cartEntries == null)
+    if (cartEntry == null)
     {
         return Results.NotFound();
     }
 
-    var viewModels = cartEntries.Select(entry => new CartEntryViewModel() { CartEntryId = entry.CartEntryId, ItemName = entry.Item.ItemName, ItemPrice = entry.Item.ItemPrice, Quantity = entry.Quantity }).ToList();
+    var viewModel = new CartEntryViewModel() { CartEntryId = cartEntry.CartEntryId, ItemName = cartEntry.Item.ItemName, ItemPrice = cartEntry.Item.ItemPrice, Quantity = cartEntry.Quantity };
 
-    return Results.Json(viewModels);
+    return Results.Json(viewModel);
 
 });
 

@@ -10,7 +10,7 @@
         <FluentNumberField @bind-Value="cartItem.Quantity" Label="Quantity" TValue="int" />
         <FluentStack Orientation="Orientation.Horizontal">
             <FluentButton Type="ButtonType.Submit">Save</FluentButton>
-            <FluentButton OnClick="@(() => Navigation.NavigateTo("/ShoppingCart/"))">Cancel</FluentButton>
+            <FluentButton OnClick="@(() => Navigation.NavigateTo("/Cart/"))">Back</FluentButton>
         </FluentStack>
     </FluentStack>
 </EditForm>

@@ -118,7 +118,7 @@
 
     public async void AddToCart(int itemId)
     {
-        await http.PutAsync($"/api/CartEntry/{itemId}", null);
+        await http.PostAsync($"/api/CartEntry/{itemId}", null);
     }
 
 }
