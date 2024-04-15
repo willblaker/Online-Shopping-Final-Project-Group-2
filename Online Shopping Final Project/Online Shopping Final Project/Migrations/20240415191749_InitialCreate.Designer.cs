@@ -12,8 +12,8 @@ using Online_Shopping_Final_Project.Data;
 namespace OnlineShoppingFinalProject.Migrations
 {
     [DbContext(typeof(ShoppingContext))]
-    [Migration("20240411233550_ItemsTableSeeding")]
-    partial class ItemsTableSeeding
+    [Migration("20240415191749_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,27 @@ namespace OnlineShoppingFinalProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Online_Shopping_Final_Project.Entities.CartEntry", b =>
+                {
+                    b.Property<int>("CartEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartEntryId"));
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartEntryId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("CartEntry");
+                });
 
             modelBuilder.Entity("Online_Shopping_Final_Project.Entities.Item", b =>
                 {
@@ -123,6 +144,101 @@ namespace OnlineShoppingFinalProject.Migrations
                     b.HasKey("OrderId");
 
                     b.ToTable("OrderHistory");
+                });
+
+            modelBuilder.Entity("Online_Shopping_Final_Project.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            Address = "123 User1 St",
+                            City = "City1",
+                            Email = "user1@onlineshopping.com",
+                            FirstName = "User",
+                            LastName = "User1",
+                            PasswordHash = "hashedpassword1",
+                            PostalCode = "45219",
+                            State = "State1",
+                            Username = "user 1"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Address = "123 User2 St",
+                            City = "City2",
+                            Email = "user2@onlineshopping.com",
+                            FirstName = "User",
+                            LastName = "User2",
+                            PasswordHash = "hashedpassword2",
+                            PostalCode = "45219",
+                            State = "State2",
+                            Username = "user 2"
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            Address = "123 User3 St",
+                            City = "City3",
+                            Email = "user3@onlineshopping.com",
+                            FirstName = "User",
+                            LastName = "User3",
+                            PasswordHash = "hashedpassword3",
+                            PostalCode = "45219",
+                            State = "State3",
+                            Username = "user 3"
+                        });
+                });
+
+            modelBuilder.Entity("Online_Shopping_Final_Project.Entities.CartEntry", b =>
+                {
+                    b.HasOne("Online_Shopping_Final_Project.Entities.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
                 });
 #pragma warning restore 612, 618
         }
