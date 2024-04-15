@@ -1,0 +1,42 @@
+@MinimalApiHost = https://localhost:7126
+
+###
+GET {{MinimalApiHost}}/api/Users
+
+
+###
+GET {{MinimalApiHost}}/api/Users/3
+
+
+###
+POST {{MinimalApiHost}}/api/Users
+Content-Type: application/json
+
+{
+  "username": "user 4",
+  "email": "user4@onlineshopping.com",
+  "passwordHash": "hashedpassword4",
+  "firstName": "User",
+  "lastName": "User4",
+  "address": "123 User4 St",
+  "city": "City4",
+  "state": "City4",
+  "postalCode": "45219"
+}
+
+
+###
+PUT {{MinimalApiHost}}/api/Users/1
+Content-Type: application/json
+
+{
+  "username": "user 3",
+  "email": "user3@onlineshopping.com",
+  "passwordHash": "hashedpassword33333",
+  "firstName": "User",
+  "lastName": "User3",
+  "address": "123 User3 St",
+  "city": "City3",
+  "state": "City3",
+  "postalCode": "45219"
+}
