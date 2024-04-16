@@ -119,15 +119,15 @@ app.MapPut("/api/Users/{id}", async (ShoppingContext dbContext, int id, UserView
     }
 
     user.UserId = userViewModel.UserId;
-    user.Username = user.Username;
-    user.Email = user.Email;
-    user.PasswordHash = user.PasswordHash;
-    user.FirstName = user.FirstName;
-    user.LastName = user.LastName;
-    user.Address = user.Address;
-    user.City = user.City;
-    user.State = user.City;
-    user.PostalCode = user.PostalCode;
+    user.Username = userViewModel.Username;
+    user.Email = userViewModel.Email;
+    user.PasswordHash = userViewModel.PasswordHash;
+    user.FirstName = userViewModel.FirstName;
+    user.LastName = userViewModel.LastName;
+    user.Address = userViewModel.Address;
+    user.City = userViewModel.City;
+    user.State = userViewModel.City;
+    user.PostalCode = userViewModel.PostalCode;
 
     await dbContext.SaveChangesAsync();
     return Results.Ok(userViewModel);

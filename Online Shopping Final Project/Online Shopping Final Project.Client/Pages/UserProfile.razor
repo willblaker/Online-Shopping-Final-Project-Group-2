@@ -1,0 +1,69 @@
+﻿@page "/UserProfile"
+@using OnlineShoppingViewModels
+@inject HttpClient http
+
+<h3>User</h3>
+
+<PageTitle>User Profile</PageTitle>
+
+<FluentCard Height="Auto" Width="Auto">
+    <FluentStack Orientation="Orientation.Vertical">
+        <EditForm Model="@user" OnValidSubmit="@UpdateUser" FormName="starship_fluent_entry" novalidate>
+            <FluentTextField Name="Username" @bind-Value="user.Username" Label="Username" Required />
+            <FluentTextField Name="Email" @bind-Value="user.Email" Label="Email" Required />
+            <FluentTextField Name="FirstName" @bind-Value="user.FirstName" Label="First Name" Required />
+            <FluentTextField Name="LastName" @bind-Value="user.LastName" Label="LastName" Required />
+            <FluentTextField Name="Address" @bind-Value="user.Address" Label="Address" />
+            <FluentTextField Name="City" @bind-Value="user.City" Label="City" />
+            <FluentTextField Name="State" @bind-Value="user.State" Label="State" />
+            <FluentTextField Name="PostalCode" @bind-Value="user.PostalCode" Label="Postal Code" />
+            <FluentTextField Name="State" @bind-Value   ="user.State" Label="State" />
+
+            <div>
+                <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent" disabled="@isSubmitting">
+                    @if (isSubmitting)
+                    {
+                        <span>Submitting...</span>
+                    }
+                    else
+                    {
+                        <span>Update</span>
+                    }
+                </FluentButton>
+            </div>
+        </EditForm>
+    </FluentStack>
+</FluentCard>
+
+@code {
+    UserViewModel user = new UserViewModel();
+    public bool isSubmitting { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetUser();
+    }
+
+    private async Task GetUser()
+    {
+        var response = await http.GetAsync("api/Users/1");
+        user = await response.Content.ReadFromJsonAsync<UserViewModel>();
+    }
+
+    public async Task UpdateUser()
+    {
+
+        isSubmitting = true;
+        StateHasChanged();
+
+        try
+        {
+            await http.PutAsJsonAsync("api/Users/1", user);
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+}
