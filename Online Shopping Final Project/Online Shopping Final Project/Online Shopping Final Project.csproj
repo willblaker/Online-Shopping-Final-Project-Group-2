@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\OnlineShoppingViewModels\OnlineShoppingViewModels.csproj" />
-    <ProjectReference Include="..\Online Shopping Final Project.Client\Online Shopping Final Project.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.*-*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
@@ -25,5 +23,9 @@
   <ItemGroup>
 	<PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* " />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.*-* " />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\OnlineShoppingViewModels\OnlineShoppingViewModels.csproj" />
+    <ProjectReference Include="..\Online Shopping Final Project.Client\Online Shopping Final Project.Client.csproj" />
   </ItemGroup>
 </Project>

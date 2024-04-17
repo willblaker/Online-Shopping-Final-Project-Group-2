@@ -1,7 +1,55 @@
 ﻿@page "/Cart"
+@using OnlineShoppingViewModels
+@inject HttpClient http
+@inject NavigationManager Navigation
 
+<!--Shopping cart displays all entries in the cartEntry table and buttons to edit or delete an item  *Steve Falconieri*-->
 
+<FluentCard Height="1000px" Width="800px">
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentStack Orientation="Orientation.Horizontal">
+            <FluentIcon Value="@(new Icons.Regular.Size24.Cart())" />
+            <FluentLabel Typo="Typography.H3">Shopping Cart</FluentLabel>
+        </FluentStack>
+
+        <FluentDataGrid Items="@Cart">
+            <PropertyColumn Title="Item Name" Property="@(cartEntry => cartEntry.ItemName)" Sortable="true" />
+            <PropertyColumn Title="Item Price" Property="@(cartEntry => cartEntry.ItemPrice.ToString("c"))" Sortable="true" />
+            <PropertyColumn Property="@(cartEntry => cartEntry.Quantity)" Sortable="true" />
+            <PropertyColumn Title="Item Total" Property="@(cartEntry => cartEntry.TotalPrice.ToString("c"))" Sortable="true" />                
+                <TemplateColumn>
+                <FluentButton OnClick="@(() => Navigation.NavigateTo($"/EditCart/{context.CartEntryId}"))">Edit</FluentButton>
+                    <FluentButton OnClick="@(() => DeleteCartItem(context.CartEntryId))">Delete</FluentButton>
+                </TemplateColumn>
+        </FluentDataGrid>
+        <h3>Total Price: @OrderTotal.ToString("c")</h3>
+
+        <FluentButton Appearance="Appearance.Accent">Checkout</FluentButton>
+    </FluentStack>
+</FluentCard>
 
 @code {
+    IQueryable<CartEntryViewModel> Cart { get; set; } 
+
+    public float OrderTotal { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Cart = (await http.GetFromJsonAsync<List<CartEntryViewModel>>("/api/CartEntry/")).AsQueryable();
+
+        OrderTotal = 0;
+        foreach(CartEntryViewModel cartEntry in Cart)
+        {
+            OrderTotal += cartEntry.TotalPrice;
+        }
+    }
+
+    private async Task DeleteCartItem(int CartEntryID)
+    {
+        await http.DeleteAsync($"/api/CartEntry/{CartEntryID}");
+        Cart = (await http.GetFromJsonAsync<List<CartEntryViewModel>>("/api/CartEntry/")).AsQueryable();
+    }
+
+    
 
 }

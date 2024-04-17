@@ -1,0 +1,38 @@
+﻿@page "/editcart/{cartEntryID:int}"
+@using OnlineShoppingViewModels
+@inject HttpClient http
+@inject NavigationManager Navigation
+
+<h3>EditCart</h3>
+
+<!--Form to change quantity of items in shopping cart *Steve Falconieri*-->
+
+<EditForm Model="@cartItem" OnValidSubmit="HandleValidSubmit" FormName="Edit Cart">
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentNumberField @bind-Value="cartItem.Quantity" Label="Quantity" TValue="int" />
+        <FluentStack Orientation="Orientation.Horizontal">
+            <FluentButton Type="ButtonType.Submit">Save</FluentButton>
+            <FluentButton OnClick="@(() => Navigation.NavigateTo("/Cart/"))">Back</FluentButton>
+        </FluentStack>
+    </FluentStack>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int CartEntryID { get; set; }
+
+    [SupplyParameterFromForm]
+    public CartEntryViewModel cartItem { get; set; } = new();
+
+    //Gets the cartItems in Json and sends it to the view model *Steve Falconieri
+    protected override async Task OnParametersSetAsync()
+    {
+        cartItem = await http.GetFromJsonAsync<CartEntryViewModel>($"/api/CartEntry/{CartEntryID}");
+    }
+
+    //Updates the quantity of the selected item once the button is clicked *Steve Falconieri*
+    private async Task HandleValidSubmit()
+    {
+        await http.PutAsJsonAsync($"/api/CartEntry/{CartEntryID}", cartItem);
+    }
+}
