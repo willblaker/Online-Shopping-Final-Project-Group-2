@@ -5,7 +5,7 @@ GET {{MinimalApiHost}}/api/Users
 
 
 ###
-GET {{MinimalApiHost}}/api/Users/3
+GET {{MinimalApiHost}}/api/Users/1
 
 
 ###

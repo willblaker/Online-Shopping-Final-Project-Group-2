@@ -25,4 +25,5 @@ namespace OnlineShoppingViewModels
         [DisplayName("Postal Code")]
         public string? PostalCode { get; set; }
     }
+
 }
