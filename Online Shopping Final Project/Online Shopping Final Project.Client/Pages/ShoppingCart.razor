@@ -24,7 +24,7 @@
         </FluentDataGrid>
         <h3>Total Price: @OrderTotal.ToString("c")</h3>
 
-        <FluentButton Appearance="Appearance.Accent">Checkout</FluentButton>
+        <FluentButton Appearance="Appearance.Accent" OnClick="Checkout">Checkout</FluentButton>
     </FluentStack>
 </FluentCard>
 
@@ -50,6 +50,8 @@
         Cart = (await http.GetFromJsonAsync<List<CartEntryViewModel>>("/api/CartEntry/")).AsQueryable();
     }
 
-    
-
+    private async Task Checkout()
+    {
+        await http.PostAsJsonAsync($"/api/Checkout/1", 1);
+    }
 }

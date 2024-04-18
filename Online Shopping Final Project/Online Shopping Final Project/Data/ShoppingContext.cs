@@ -23,9 +23,9 @@ namespace Online_Shopping_Final_Project.Data
         //public DbSet<M_Shoes> shoes { get; set; }
 
         public DbSet<CartEntry> CartEntries { get; set; }
-
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

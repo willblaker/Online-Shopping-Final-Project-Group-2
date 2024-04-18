@@ -210,4 +210,30 @@ app.MapDelete("/api/CartEntry/{Id}", async (ShoppingContext dbContext, int id) =
     return Results.Ok();
 });
 
+app.MapPost("/api/Checkout/{Id}", async (ShoppingContext dbContext, int id) =>
+{
+    var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
+    var order = new Order
+    {
+        OrderDate = DateTime.Now,
+        UserId = id,
+        TotalPrice = cartEntries.Sum(ce => ce.Item.ItemPrice * ce.Quantity),
+        OrderDetails = new List<OrderDetail>()
+    };
+
+    foreach(var entry in cartEntries)
+    {
+        order.OrderDetails.Add(new OrderDetail
+        {
+            ItemId = entry.Item.ItemId,
+            Quantity = entry.Quantity,
+            Price = entry.Item.ItemPrice
+        });
+    }
+
+    dbContext.OrderHistory.Add(order);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok();
+});
+
 app.Run();
