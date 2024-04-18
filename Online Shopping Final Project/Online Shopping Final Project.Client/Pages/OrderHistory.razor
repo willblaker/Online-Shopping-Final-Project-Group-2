@@ -10,14 +10,35 @@
         <PropertyColumn Title="Order ID" Property="@(order => order.OrderId)" Sortable="true" />
         <PropertyColumn Title="Order Date" Property="@(order => order.OrderDate.ToString("yyyy-MM-dd"))" Sortable="true" />
         <PropertyColumn Title="Total Price" Property="@(order => order.TotalPrice.ToString("C"))" Sortable="true" />
+        <TemplateColumn>
+            <FluentButton OnClick="@(() => ToggleDetails(context.OrderId))">View Details</FluentButton>
+        </TemplateColumn>
     </FluentDataGrid>
+    @if (selectedOrder != null)
+    {
+        <OrderDetailsComponent Order="@selectedOrder" />
+    }
 </FluentCard>
 
 @code {
     IQueryable<OrderViewModel> Orders { get; set; }
+    OrderViewModel selectedOrder;
 
     protected override async Task OnParametersSetAsync()
     {
         Orders = (await http.GetFromJsonAsync<List<OrderViewModel>>("/api/Orders/")).AsQueryable();
+    }
+
+    private void ToggleDetails(int orderId)
+    {
+        if (selectedOrder != null && selectedOrder.OrderId == orderId)
+        {
+            selectedOrder = null;
+        }
+        else
+        {
+            selectedOrder = Orders.FirstOrDefault(o => o.OrderId == orderId);
+        }
+
     }
 }
