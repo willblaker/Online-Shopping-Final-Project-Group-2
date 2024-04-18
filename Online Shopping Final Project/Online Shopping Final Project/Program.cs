@@ -236,4 +236,25 @@ app.MapPost("/api/Checkout/{Id}", async (ShoppingContext dbContext, int id) =>
     return Results.Ok();
 });
 
+app.MapGet("/api/Orders/", async (ShoppingContext dbContext) =>
+{
+    var orders = await dbContext.OrderHistory.Include(o => o.OrderDetails).ThenInclude(od => od.Item).ToListAsync();
+    var viewModel = orders.Select(order => new OrderViewModel
+    {
+        OrderId = order.OrderId,
+        OrderDate = order.OrderDate,
+        TotalPrice = order.TotalPrice,
+        OrderDetails = order.OrderDetails.Select(od => new OrderDetailViewModel
+        {
+            OrderDetailId = od.OrderDetailId,
+            ItemId = od.ItemId,
+            ItemName = od.Item.ItemName,
+            Quantity = od.Quantity,
+            Price = od.Price
+        }).ToList()
+    }).ToList();
+
+    return Results.Json(viewModel);
+});
+
 app.Run();

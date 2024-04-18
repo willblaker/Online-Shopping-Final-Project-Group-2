@@ -1,0 +1,23 @@
+﻿@page "/OrderHistory"
+@using OnlineShoppingViewModels
+@inject HttpClient http
+
+<FluentCard Height="1000px" Width="800px">
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentLabel Typo="Typography.H3">Order History</FluentLabel>
+    </FluentStack>
+    <FluentDataGrid Items="@Orders">
+        <PropertyColumn Title="Order ID" Property="@(order => order.OrderId)" Sortable="true" />
+        <PropertyColumn Title="Order Date" Property="@(order => order.OrderDate.ToString("yyyy-MM-dd"))" Sortable="true" />
+        <PropertyColumn Title="Total Price" Property="@(order => order.TotalPrice.ToString("C"))" Sortable="true" />
+    </FluentDataGrid>
+</FluentCard>
+
+@code {
+    IQueryable<OrderViewModel> Orders { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Orders = (await http.GetFromJsonAsync<List<OrderViewModel>>("/api/Orders/")).AsQueryable();
+    }
+}
