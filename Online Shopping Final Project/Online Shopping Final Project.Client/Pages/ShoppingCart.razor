@@ -12,6 +12,14 @@
             <FluentLabel Typo="Typography.H3">Shopping Cart</FluentLabel>
         </FluentStack>
 
+        <FluentCard Height="100px" Width="750px" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+            <FluentStack Orientation="Orientation.Vertical">
+                <FluentLabel Typo="Typography.H5">Deliver to:</FluentLabel>
+                <FluentLabel>@UserName</FluentLabel>
+                <FluentLabel>@Address</FluentLabel>
+            </FluentStack>
+        </FluentCard>
+
         <FluentDataGrid Items="@Cart">
             <PropertyColumn Title="Item Name" Property="@(cartEntry => cartEntry.ItemName)" Sortable="true" />
             <PropertyColumn Title="Item Price" Property="@(cartEntry => cartEntry.ItemPrice.ToString("c"))" Sortable="true" />
@@ -30,6 +38,8 @@
 
 @code {
     IQueryable<CartEntryViewModel> Cart { get; set; } 
+    string UserName { get; set; }
+    string Address { get; set; }
 
     public float OrderTotal { get; set; }
 
@@ -42,6 +52,10 @@
         {
             OrderTotal += cartEntry.TotalPrice;
         }
+
+        var user = await http.GetFromJsonAsync<UserViewModel>("api/Users/1");
+        UserName = user.FirstName + " " + user.LastName;
+        Address = user.Address + ", " + user.City + ", " + user.State + " " + user.PostalCode;
     }
 
     private async Task DeleteCartItem(int CartEntryID)
