@@ -1,0 +1,24 @@
+﻿@using OnlineShoppingViewModels
+
+<FluentCard Width="400px" Height="400px">
+    <FluentStack Orientation="Orientation.Vertical">
+        <FluentLabel Typo="Typography.H3">Order Details for Order: @Order?.OrderId</FluentLabel>
+        @if (Order?.OrderDetails != null)
+        {
+            <ul>
+                @foreach (var detail in Order.OrderDetails)
+                {
+                    <li>@detail.ItemName - Quantity: @detail.Quantity, Price: @detail.Price.ToString("C")</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <FluentLabel>No details available</FluentLabel>
+        }
+    </FluentStack>
+</FluentCard>
+
+@code {
+    [Parameter] public OrderViewModel Order { get; set; }
+}

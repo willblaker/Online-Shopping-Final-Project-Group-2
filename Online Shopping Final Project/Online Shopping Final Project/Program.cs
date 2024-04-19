@@ -210,4 +210,51 @@ app.MapDelete("/api/CartEntry/{Id}", async (ShoppingContext dbContext, int id) =
     return Results.Ok();
 });
 
+app.MapPost("/api/Checkout/{Id}", async (ShoppingContext dbContext, int id) =>
+{
+    var cartEntries = await dbContext.CartEntries.Include(entry => entry.Item).ToListAsync();
+    var order = new Order
+    {
+        OrderDate = DateTime.Now,
+        UserId = id,
+        TotalPrice = cartEntries.Sum(ce => ce.Item.ItemPrice * ce.Quantity),
+        OrderDetails = new List<OrderDetail>()
+    };
+
+    foreach(var entry in cartEntries)
+    {
+        order.OrderDetails.Add(new OrderDetail
+        {
+            ItemId = entry.Item.ItemId,
+            Quantity = entry.Quantity,
+            Price = entry.Item.ItemPrice
+        });
+    }
+
+    dbContext.OrderHistory.Add(order);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok();
+});
+
+app.MapGet("/api/Orders/", async (ShoppingContext dbContext) =>
+{
+    var orders = await dbContext.OrderHistory.Include(o => o.OrderDetails).ThenInclude(od => od.Item).ToListAsync();
+    var viewModel = orders.Select(order => new OrderViewModel
+    {
+        OrderId = order.OrderId,
+        OrderDate = order.OrderDate,
+        TotalPrice = order.TotalPrice,
+        OrderDetails = order.OrderDetails.Select(od => new OrderDetailViewModel
+        {
+            OrderDetailId = od.OrderDetailId,
+            ItemId = od.ItemId,
+            ItemName = od.Item.ItemName,
+            Quantity = od.Quantity,
+            Price = od.Price
+        }).ToList()
+    }).ToList();
+
+    return Results.Json(viewModel);
+});
+
 app.Run();
