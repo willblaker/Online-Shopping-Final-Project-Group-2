@@ -1,47 +1,52 @@
-Your solution should include the following items.
+IT3047C - Final Project - Online Shopping
+===================================
 
-Fluent Blazor Project  - .Net 8
-At least 5 razor pages ----- STATUS:
+## Fluent Blazor Project  - .Net 8
 
-Among these pages you must provide the following CRUD operations at least once in the project
+☑️ At least 5 razor pages
 
-Create  (POST) ----- STATUS: - COMPLETE - SHOP -> SHOPPING CART
-Read     (GET) ----- STATUS: COMPLETE - SHOPPING CART
-Update (PUT) ----- STATUS: COMPLETE - SHOPPING CART
-Delete  (DELETE) ----- STATUS: COMPLETE - SHOPPING CART
+☑️ Among these pages you must provide the following CRUD operations at least once in the project
+- POST - Create   - SHOP -> SHOPPING CART
+- GET - Read     - SHOPPING CART
+- PUT - Update - SHOPPING CART
+- DELETE - Delete - SHOPPING CART
 
-Create/register at least one dependency and use it at least once.  (Must be in addition to HttpClient) ----- STATUS: COMPLETE
+☑️ Create/register at least one dependency and use it at least once. (Must be in addition to HttpClient)
 
-At least 1 custom configurable razor component per group member ----- STATUS: COMPLETE
+☑️ At least 1 custom configurable razor component per group member.
 
-Each group member must develop at least one Razor component. ----- STATUS: COMPLETE
+☑️ Each group member must develop at least one Razor component.
 
-All components must be used someone in your project ----- STATUS: COMPLETE
+☑️ All components must be used someone in your project.
 
-Must demonstrate using components parameters to configure each component ----- STATUS: COMPLETE
+☑️ Must demonstrate using components parameters to configure each component.
 
-Must demonstrate using EventCallbacks to notify containing pages that component invoked an event ----- STATUS: INCOMPLETE
+☑️ Must demonstrate using EventCallbacks to notify containing pages that component invoked an event.
 
-Pass data between pages at least once ----- STATUS: COMPLETE
-Can be route parameter or query string ----- STATUS: COMPLETE
-Read data from DB and Write data to DB ----- STATUS: COMPLETE
+☑️ Pass data between pages at least once.
 
-ASP.NET Core Web API - .Net 8
-At least 2 controllers - scaffold with Entity Framework Core ----- STATUS: INCOMPLETE
+☑️ Can be route parameter or query string.
 
-Use http file to test Web API (Use REST Client extension if you are using Mac/VS Code) ----- STATUS: INCOMPLETE
+☑️ Read data from DB and Write data to DB.
 
-Use Entity Framework Core for all data access ----- STATUS: COMPLETE
+## ASP.NET Core Web API - .Net 8
 
-At least 5 entities/tables ----- STATUS: COMPLETE
+☑️ At least 2 controllers - scaffold with Entity Framework Core.
 
-At least 3 relationships ----- STATUS: INCOMPLETE
+☑️ Use http file to test Web API (Use REST Client extension if you are using Mac/VS Code).
 
-At least 2 migrations ----- STATUS: COMPLETE
+☑️ Use Entity Framework Core for all data access.
 
-Must include at least one seeded table ----- STATUS: COMPLETE
+☑️ At least 5 entities/tables.
 
-Must use Git ----- STATUS: COMPLETE
+☑️ At least 3 relationships.
 
-Must have appropriate .gitignore.
-Must have a Mermaid chart that documents the relation of the objects in your code.  No specific format is required.
+☑️ At least 2 migrations.
+
+☑️ Must include at least one seeded table.
+
+☑️ Must use Git.
+
+☑️ Must have appropriate .gitignore.
+
+☑️ Must have a Mermaid chart that documents the relation of the objects in your code.  No specific format is required.
